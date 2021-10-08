@@ -1,0 +1,21 @@
+{
+  "name": "caviarapp",
+  "version": "1.0.0",
+  "description": "A fashion based social media app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/perrotth1/CaviarApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    
+  },
+  "devDependencies": {
+
+  }
+}
