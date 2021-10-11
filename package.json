@@ -1,10 +1,10 @@
 {
   "name": "caviarapp",
   "version": "1.0.0",
-  "description": "A fashion based social media app",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "repository": {
     "type": "git",
@@ -13,7 +13,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    
+    "bulma": "^0.9.3",
+    "@fortawesome/fontawesome-free": "5.15.4",
+    "core-js": "^3.18.2"
   },
   "devDependencies": {
 
