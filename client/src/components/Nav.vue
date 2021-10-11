@@ -81,8 +81,3 @@ export default {
 
 </script>
 
-<style scoped>
-    navbar {
-        color: white;
-    }
-</style>
