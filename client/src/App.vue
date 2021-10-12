@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Nav from '../src/components/Nav'
+import Nav from '../src/components/Nav';
 
 export default {
   components: {
@@ -18,7 +18,7 @@ export default {
 </script>
 
 
-<style lang="scss">
+<style lang="css">
 
 
 
