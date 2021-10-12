@@ -24,7 +24,6 @@
                 <span class="icon"> 
                     <i class="fas fa-home"></i>
                 </span>
-                    <i class="fas fa-home"></i>
             </a>
 
             <a class="navbar-item" href="explore.html">
