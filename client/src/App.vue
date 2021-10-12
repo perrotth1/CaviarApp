@@ -3,6 +3,8 @@
     <Nav />
 
     <router-view />
+
+    
   </div>
 </template>
 

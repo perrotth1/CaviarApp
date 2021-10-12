@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: rgb(0, 0, 0);">
         <div class="navbar-brand">
-            <a class="navbar-item" href="index.html">
+            <a class="navbar-item" href="/">
                 <img src="../assets/CAVIARlogo.png" height="50">
             </a>
         
@@ -20,7 +20,7 @@
                 </figure>
             </a>
         
-            <a class="navbar-item" href="index.html">
+            <a class="navbar-item" href="/">
                 <span class="icon"> 
                     <i class="fas fa-home"></i>
                 </span>
@@ -32,7 +32,7 @@
                 </span>
             </a>
 
-            <a class="navbar-item" href="post.html">
+            <a class="navbar-item" href="/post">
                 <span class="icon"> 
                     <i class="fas fa-comment-alt"></i>
                 </span>
