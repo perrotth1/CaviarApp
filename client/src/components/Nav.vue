@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: rgb(0, 0, 0);">
+    <nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
                 <img src="../assets/CAVIARlogo.png" height="50">
@@ -56,10 +56,10 @@
             <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                <a class="button is-primary" href="signup.html">
+                <a class="button is-primary" href="/signup">
                     <strong>Sign up</strong>
                 </a>
-                <a class="button is-light" href="login.html">
+                <a class="button is-light" href="/login">
                     Log in
                 </a>
                 </div>
@@ -68,6 +68,14 @@
         </div>
     </nav>
 </template>
+
+<style lang="scss">
+
+$primary: red;
+$body-background-color: red;
+$background: red;
+
+</style>
 
 <script>
 
