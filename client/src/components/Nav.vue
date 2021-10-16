@@ -21,47 +21,48 @@
 
     <div class="navbar-menu" :class="{ 'is-active': isActive }">
       <div class="navbar-start">
-        <a class="navbar-item" href="profile.html">
+        <router-link class="navbar-menu is-tab" to="/" active-class="is-active">
           <figure class="image">
             <img src="../assets/placeholders/user1avatar.png" height="50" />
           </figure>
-        </a>
+        </router-link>
 
-        <a class="navbar-item" href="/">
+        <router-link class="navbar-menu is-tab" to="/" active-class="is-active" exact>
           <span class="icon">
             <i class="fas fa-home"></i>
           </span>
-        </a>
+        </router-link>
 
-        <a class="navbar-item" href="explore.html">
+        <router-link class="navbar-menu is-tab" to="/" active-class="is-active">
           <span class="icon">
             <i class="fas fa-search"></i>
           </span>
-        </a>
+        </router-link>
 
-        <a class="navbar-item" href="/post">
+        <router-link class="navbar-menu is-tab" to="/post" active-class="is-active">
           <span class="icon">
             <i class="fas fa-comment-alt"></i>
           </span>
-        </a>
+        </router-link>
 
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link"> More </a>
+          <a class="navbar-link">
+            More
+          </a>
           <div class="navbar-dropdown">
-            <a class="navbar-item"> About </a>
-            <a class="navbar-item"> Contact </a>
+            <router-link class="navbar-menu is-tab" to="/" active-class="is-active">
+              About
+            </router-link>
+            <router-link class="navbar-menu is-tab" to="/" active-class="is-active">
+              Contact
+            </router-link>
           </div>
         </div>
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary" href="/signup">
-              <strong>Sign up</strong>
-            </a>
-            <a class="button is-light" href="/login"> Log in </a>
-          </div>
+          <LoginBadge />
         </div>
       </div>
     </div>
@@ -75,12 +76,18 @@ $background: red;
 </style>
 
 <script>
+import LoginBadge from './LoginBadge';
+
 export default {
   data() {
     return {
       isActive: false,
     };
   },
+  components: {
+    LoginBadge
+  }
 };
 </script>
+
 

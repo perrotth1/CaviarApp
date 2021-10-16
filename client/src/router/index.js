@@ -40,4 +40,14 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  if(to.meta.requiresLogin && !sessionStorage.user) {
+    next('/login');
+  }
+  
+  else {
+    next();
+  }
+})
+
 export default router
