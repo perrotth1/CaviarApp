@@ -2,9 +2,7 @@
   "name": "caviarapp",
   "version": "1.0.0",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "nodemon --watch server server/index"
   },
   "repository": {
     "type": "git",
@@ -13,11 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bulma": "^0.9.3",
-    "@fortawesome/fontawesome-free": "5.15.4",
-    "core-js": "^3.18.2"
+    "express": "4.17.1",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
-
+    "nodemon": "^2.0.13"
   }
 }
