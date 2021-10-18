@@ -9,9 +9,9 @@ const session = {
 
     toRoute: '/',
 
-    Login(handle, password){
+    Login(aEmail, aPassword) {
 
-        const response = Login(handle, password);
+        const response = Login(aEmail, aPassword);
 
         this.user = response.user;
 
