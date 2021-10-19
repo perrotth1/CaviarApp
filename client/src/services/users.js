@@ -25,11 +25,11 @@ const userList = [
 
 //Searches userList by applying the provided test function to each object in the list
 export function getByHandle(aHandle) {
-    return ({ ...userList.find( i => i.handle == aHandle), password: undefined });
+    return ({ ...userList.find( i => i.userHandle == aHandle) });
 }
 
 export function getByEmail(aEmail) {
-    return ({ ...userList.find( i => i.email == aEmail), password: undefined });
+    return ({ ...userList.find( i => i.email == aEmail) });
 }
 
 //Get all users
@@ -39,26 +39,25 @@ export function getAll() {
 
 export function Login(aEmail, aPassword) {
     //Check if user exists
-    if( userList.includes(aEmail) ) {
-        console.log("User found for email");
-        
-        const user = userList.getByEmail(aEmail);
-        if( user != undefined ) {
-            //Check password
-            if( user.password == aPassword ){
-                console.log("Login Successful!");
+    const user = getByEmail(aEmail);
 
-                const data = { ...user, password: undefined };
-                return { user: data };
-            }
-            else
-            {
-                console.log("Incorrect Password")
-            }
+    if( user.email != undefined ) {
+        //Check password
+        if( user.password == aPassword ){
+            console.log("Login Successful!");
+
+            const data = { ...user, password: undefined };
+            return { user: data };
+        }
+        else
+        {
+            console.log("Incorrect Password")
+            throw("error incorrect pass");
         }
     }
     else {
         console.log("No user was found for the given email!")
+        throw("error user not found");
     }
 }
 
