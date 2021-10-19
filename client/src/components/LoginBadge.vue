@@ -1,11 +1,11 @@
 <template>
   <div class="buttons" v-if="!Session.user">
-    <a class="button is-primary" href="/signup">
+    <router-link class="button is-primary" to="/signup">
       <strong>Sign up</strong>
-    </a>
-    <a class="button is-light" href="/login"> 
+    </router-link>
+    <router-link class="button is-primary" to="/login">
         Log in 
-    </a>
+    </router-link>
   </div>
   <div v-else>
       Hello {{name}}
