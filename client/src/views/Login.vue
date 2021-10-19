@@ -2,7 +2,7 @@
     <div class="container">
         <div class="box mx-6 my-6 p-6" id="loginBox">
             <div class="field">
-                <label class="label">Username or Email:</label>
+                <label class="label">Email:</label>
                 <div class="control">
                     <input class="input" type="email" placeholder="example@ex.com">
                 </div>
