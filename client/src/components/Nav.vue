@@ -21,7 +21,7 @@
 
     <div class="navbar-menu" :class="{ 'is-active': isActive }">
       <div class="navbar-start">
-        <router-link class="navbar-item" to="/" active-class="is-active">
+        <router-link class="navbar-item" to="/profile" active-class="is-active">
           <figure class="image">
             <img src="../assets/placeholders/user1avatar.png" />
           </figure>
