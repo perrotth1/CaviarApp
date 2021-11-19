@@ -1,15 +1,15 @@
 <template>
-  <div class="container">
+  
     <Nav />
 
     <router-view />
 
     
-  </div>
+  
 </template>
 
 <script>
-import Nav from '../src/components/Nav';
+import Nav from './components/Nav';
 
 export default {
   components: {

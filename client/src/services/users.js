@@ -20,7 +20,6 @@ const userList = [
         email: 'titaniut1@newpaltz.edu',
         following: [ { handle: '@uruhara_kisuke', isApproved: true} ]
     }
-
 ]
 
 //Searches userList by applying the provided test function to each object in the list
