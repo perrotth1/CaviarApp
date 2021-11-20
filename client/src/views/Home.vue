@@ -1,24 +1,24 @@
 <template>
-<div>
-  <FeedUserPost />
+<div class="section">
+  <UserPostNew />
 
-  <FeedUserPost />
+  <UserPostNew />
 
-  <FeedUserPost />
+  <UserPostNew />
 
-  <FeedUserPost />
+  <UserPostNew />
 </div>
 </template>
 
 <script>
 // @ is an alias to /src
 
-import FeedUserPost from '../components/FeedUserPost';
+import UserPostNew from '../components/UserPostNew.vue';
 
 export default {
   name: 'Home',
   components: {
-    FeedUserPost
+    UserPostNew
   }
 }
 </script>

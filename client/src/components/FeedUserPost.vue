@@ -25,15 +25,14 @@
                     <div class="column is-3" style="text-align: center;">
                         <div class="box" id="infoBox">
                             <div class="columns">
-                                <div class="column is-6">
+                                <div class="column is-half">
                                     <span class="icon">
                                         <i class="fas fa-heart"></i>
                                     </span>
                                 </div>
-                                <div class="column is-6">
+                                <div class="column is-half">
                                     <span class="icon">
                                         <i class="fas fa-share"></i>
-
                                     </span>
                                 </div>
                             </div>
