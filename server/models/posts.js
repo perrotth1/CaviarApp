@@ -49,3 +49,44 @@ const userPosts = [
         isPublic: true
     }
 ]
+
+//A mongo pipeline is like an array of filters used for narrowing down database entries in searches.
+//Each item of the array is a mongo operation that does various filtering, and a collection of data will pass
+//through each of these filters one by one to narrow down the data
+const addOwnerPipeline = [
+    { $lookup: {
+        from: "users",
+        localField: "user_handle",
+        foreignField: "handle",
+        as: "user",
+    }},
+    { $unwind: "$user" },
+    { $project: { "owner.password": 0 } }
+];
+
+module.exports.GetAll =  function GetAll() {
+    return collection.aggregate(addOwnerPipeline).toArray();
+}
+
+module.exports.GetWall =  function GetWall(a_handle) {
+    return collection.aggregate(addOwnerPipeline).match({ user_handle: a_handle });
+}
+
+module.exports.GetFeed = async function (a_handle) {
+
+    const user = await collection.findOne({ a_handle });
+
+    if(!user){
+        return Promise.reject({ code: 404, msg: "User not found"});
+    }
+
+    //get following list field from user obj, filter by those approved, map creates array of each of their handles, then concat users own handle to the list as well
+    const targets = user.following.filter({ isApproved: true }).map(x => x.handle).concat(a_handle);
+
+    const query = collection.aggregate( [ { $match: { user_handle: { $in: targets } } } ].concat(addOwnerPipeline) );
+
+    console.log( query.toArray().toString() );
+
+    return query.toArray();
+
+}

@@ -40,6 +40,9 @@ module.exports.GetAll = () => {
     return collection.find().toArray();
 }
 
+module.exports.Get = (user_id) => {
+    return collection.findOne({ _id: new ObjectId(user_id) });
+}
 
 module.exports.AddUser = async function AddUser(a_user) {
     if(!a_user.firstName) {
