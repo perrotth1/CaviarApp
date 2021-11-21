@@ -7,6 +7,6 @@ app
     res.send('Hello World');
 })
 
-app.listen(port, () => {
+.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`);
 })

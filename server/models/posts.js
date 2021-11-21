@@ -64,12 +64,23 @@ const addOwnerPipeline = [
     { $project: { "owner.password": 0 } }
 ];
 
+module.exports.Get = function Get( a_post_id ) {
+    return collection.findOne({ _id: new ObjectId(a_post_id )});
+}
+
 module.exports.GetAll =  function GetAll() {
     return collection.aggregate(addOwnerPipeline).toArray();
 }
 
-module.exports.GetWall =  function GetWall(a_handle) {
+module.exports.GetWall = function GetWall(a_handle) {
     return collection.aggregate(addOwnerPipeline).match({ user_handle: a_handle });
+
+}
+
+module.exports.Delete = async function Delete(a_post_id){
+    const result = await collection.findOneAndDelete({ _id: new ObjectId(a_post_id)});
+
+    return result.value;
 }
 
 module.exports.GetFeed = async function (a_handle) {
@@ -89,4 +100,21 @@ module.exports.GetFeed = async function (a_handle) {
 
     return query.toArray();
 
+}
+
+module.exports.Add = async function Add(a_post){
+
+    a_post.postTime = Date();
+
+    const result = await collection.insertOne(a_post);
+
+    a_post._id = result.insertedId;
+
+    return { ...a_post };
+}
+
+module.exports.Seed = async function Seed(){
+    for(const p of userPosts){
+        await module.exports.Add(p);
+    }
 }

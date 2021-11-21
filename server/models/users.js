@@ -44,6 +44,12 @@ module.exports.Get = (user_id) => {
     return collection.findOne({ _id: new ObjectId(user_id) });
 }
 
+module.exports.Delete = async function Delete(a_user_id) {
+    const result = await collection.findOneAndDelete({ _id: new ObjectId(a_user_id)});
+
+    return result.value;
+}
+
 module.exports.AddUser = async function AddUser(a_user) {
     if(!a_user.firstName) {
         return Promise.reject({ code: 422, msg: "First Name Required"})
@@ -61,8 +67,15 @@ module.exports.AddUser = async function AddUser(a_user) {
 
 }
 
-module.exports.Update = async function Update(a_user) {
-    //
+module.exports.Update = async function Update(a_user_id, a_user) {
+    
+    const result = await collection.findOneAndUpdate(
+        { _id: new ObjectId(a_user_id) },
+        { $set: a_user },
+        { returnDocument: 'after' }
+    )
+
+    return { ...result.value, password: undefined }
 }
 
 module.exports.Login = async function Login(a_handle, a_password) {
