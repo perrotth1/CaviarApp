@@ -3,7 +3,6 @@ const app = express.Router();
 
 const model = require("../models/posts");
 
-
 app
 
     .get("/", (req, res, next) => {

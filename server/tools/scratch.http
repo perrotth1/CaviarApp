@@ -1,0 +1,3 @@
+POST http://localhost:3100/posts/seed
+###
+POST http://localhost:3100/users/seed
