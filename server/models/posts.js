@@ -3,7 +3,7 @@ const { ObjectId } = require("bson");
 const Users = require("./users"); 
 const { client } = require("./mongo");
 
-const collection = client.db(process.env.MONGO_DBNAME).collection('users');
+const collection = client.db(process.env.MONGO_DBNAME).collection('posts');
 module.exports.collection = collection;
 
 const userPosts = [
@@ -68,8 +68,9 @@ module.exports.Get = function Get( a_post_id ) {
     return collection.findOne({ _id: new ObjectId(a_post_id )});
 }
 
-module.exports.GetAll =  function GetAll() {
-    return collection.aggregate(addOwnerPipeline).toArray();
+module.exports.GetAll = function GetAll() {
+    //return collection.aggregate(addOwnerPipeline).toArray();
+    return collection.find().toArray();
 }
 
 module.exports.GetWall = function GetWall(a_handle) {

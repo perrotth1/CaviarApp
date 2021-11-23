@@ -34,12 +34,12 @@
 
 <script>
 
+
 export default {
     Name: 'Signup',
-    Components: {
+    components: { 
 
-    }
-
+     }
 }
 
 </script>

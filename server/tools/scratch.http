@@ -1,3 +1,15 @@
 POST http://localhost:3100/posts/seed
 ###
+http://localhost:3100/posts
+###
+http://localhost:3100/
+
+
+
 POST http://localhost:3100/users/seed
+###
+http://localhost:3100/users
+###
+http://localhost:3100/users/619c707fb1ea22f2756adc9f
+###
+http://localhost:3100/users/

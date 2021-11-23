@@ -13,11 +13,13 @@ const routes = [
     component: Home
   },
   {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
@@ -25,11 +27,6 @@ const routes = [
     name: 'Post',
     component: Post,
     meta: { requiresLogin: true }
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: Login
   },
   {
     path: '/signup',
@@ -49,13 +46,13 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  //If "to" (page you are going to) requires login AND session doesn't have user object defined (not logged in), take user to login page
   if(to.meta.requiresLogin && !sessionStorage.user) {
     next('/login');
   }
-  
   else {
     next();
   }
 })
 
-export default router
+export default router;

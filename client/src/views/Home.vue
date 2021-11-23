@@ -1,24 +1,28 @@
 <template>
 <div class="section">
-  <UserPostNew />
+  <UserPostCard />
 
-  <UserPostNew />
+  <UserPostCard />
 
-  <UserPostNew />
+  <UserPostCard />
 
-  <UserPostNew />
+  <UserPostCard />
 </div>
 </template>
 
 <script>
 // @ is an alias to /src
 
-import UserPostNew from '../components/UserPostNew.vue';
+import UserPostCard from '../components/UserPostCard.vue';
 
 export default {
   name: 'Home',
   components: {
-    UserPostNew
+    UserPostCard
   }
 }
 </script>
+
+<style>
+
+</style>
