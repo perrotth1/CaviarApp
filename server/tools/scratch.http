@@ -3,13 +3,83 @@ POST http://localhost:3100/posts/seed
 http://localhost:3100/posts
 ###
 http://localhost:3100/
+###
+POST http://localhost:3100/posts
+Content-Type: application/json
+    
+    {
+        "userHandle": "@uruhara_kisuke",
+
+        "imgTopSrc": "https://images-na.ssl-images-amazon.com/images/I/5113xfJXuXL._AC_UL650_SR500,650_QL65_.jpg",
+        "imgTopText": "Mens Gorilla Dyed T-Shirt",
+
+        "imgPantsSrc": "https://images-na.ssl-images-amazon.com/images/I/412v4v+CEaL._AC_UL550_SR423,550_QL65_.jpg",
+        "imgPantsText": "Rick Owens Men's Drop Crotch Cropped Pants",
+
+        "imgShoesSrc": "https://m.media-amazon.com/images/I/8112-x07qKL._AC_SX255_.jpg",
+        "imgShoesText": "New Balance 996v3",
+
+        "postTime": "Mon Nov 22 2021 23:38:47 GMT-0500 (Eastern Standard Time)",
+
+        "caption": "Another fine post",
+
+        "likes": 12,
+
+        "isPublic": true
+
+    }
+###
+POST http://localhost:3100/posts
+Content-Type: application/json
+    
+    {
+        "userHandle": "@fuck_man",
+
+        "imgTopSrc": "https://images-na.ssl-images-amazon.com/images/I/5113xfJXuXL._AC_UL650_SR500,650_QL65_.jpg",
+        "imgTopText": "Mens Gorilla Dyed T-Shirt",
+
+        "imgPantsSrc": "https://images-na.ssl-images-amazon.com/images/I/412v4v+CEaL._AC_UL550_SR423,550_QL65_.jpg",
+        "imgPantsText": "Rick Owens Men's Drop Crotch Cropped Pants",
+
+        "imgShoesSrc": "https://m.media-amazon.com/images/I/8112-x07qKL._AC_SX255_.jpg",
+        "imgShoesText": "New Balance 996v3",
+
+        "postTime": "Mon Nov 22 2021 23:38:47 GMT-0500 (Eastern Standard Time)",
+
+        "caption": "I stole this outfit from @uruhara_kisuke",
+
+        "likes": 0,
+
+        "isPublic": true
+
+    }
+###
+http://localhost:3100/posts/wall/@uruhara_kisuke
+###
+http://localhost:3100/posts/feed/@uruhara_kisuke
 
 
 
+###
 POST http://localhost:3100/users/seed
 ###
 http://localhost:3100/users
 ###
 http://localhost:3100/users/619c707fb1ea22f2756adc9f
 ###
-http://localhost:3100/users/
+http://localhost:3100/users/byhandle/@uruhara_kisuke
+###
+POST http://localhost:3100/users/register
+Content-Type: application/json
+
+    {     
+        "firstName": "Fuck",
+        "lastName": "Man",
+        "userHandle": "@fuck_man",
+        "password": "fuck",
+        "profilePic": "../assets/placeholders/user2avatar.jpg",
+        "isAdmin": false,
+        "email": "manf@newpaltz.edu",
+        "following": [ { "handle": "@uruhara_kisuke", "isApproved": true} ]
+    }
+
