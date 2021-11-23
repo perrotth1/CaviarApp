@@ -6,11 +6,13 @@ import { Login } from './users';
 const session = {
     user: null,
     messages: [],
-    toRoute: '/home',
+    toRoute: '/',
 
-    async Login(a_Email, a_Password) {
+    async Login(a_handle, a_password) {
         try {
-            const response = await Login(a_Email, a_Password);
+            const response = await Login(a_handle, a_password);
+
+            console.log("Returned from users service");
 
             this.user = response.user;
 

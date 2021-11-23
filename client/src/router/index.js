@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import Session from '../services/session';
+
 
 import Home from '../views/Home.vue';
 import Post from '../views/Post.vue';
@@ -10,7 +12,8 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: { requiresLogin: true }
   },
   {
     path: '/login',
@@ -36,7 +39,8 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    component: Profile
+    component: Profile,
+    meta: { requiresLogin: true }
   }
 ]
 
@@ -47,7 +51,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   //If "to" (page you are going to) requires login AND session doesn't have user object defined (not logged in), take user to login page
-  if(to.meta.requiresLogin && !sessionStorage.user) {
+  if(to.meta.requiresLogin && !Session.user) {
     next('/login');
   }
   else {

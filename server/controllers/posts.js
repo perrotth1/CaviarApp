@@ -12,7 +12,9 @@ app
     })
 
     .get("/wall/:handle", (req, res, next) => {
-        res.send( model.GetWall(req.params.handle) );
+        model   .GetWall(req.params.handle)
+                .then( x => res.send(x) )
+                .catch(next)
     })
 
     .get("/feed/:handle", (req, res, next) => {

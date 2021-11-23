@@ -4,7 +4,7 @@
             <div class="field">
                 <label class="label">Email:</label>
                 <div class="control">
-                    <input class="input" type="email" placeholder="example@ex.com" v-model="email">
+                    <input class="input" type="text" placeholder="example@ex.com" v-model="handle">
                 </div>
             </div>
 
@@ -26,22 +26,22 @@
 
 <script>
 
-import session from '../services/session.js';
+import Session from '../services/session.js';
 
 
 export default {
     Name: 'Login',
     data: () => ({
-        email: null,
+        handle: null,
         password: null,
-        session
+        Session
     }),
     Components: {
 
     },
     methods: {
         login() {
-            this.session.Login(this.email, this.password);
+            this.Session.Login(this.handle, this.password);
         }
     }
 }

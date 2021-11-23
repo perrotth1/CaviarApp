@@ -14,7 +14,8 @@ app
     .use('/', express.static(path.join(__dirname, '../docs')) ) 
 
     //CORS Light headers; so chrome doesn't shut us down
-    .use((req, res, next) => {      
+    .use((req, res, next) => {   
+        console.log("Adding cors ")   
         res.setHeader('Access-Control-Allow-Origin', '*');   
         res.setHeader('Access-Control-Allow-Methods', '*');
         res.setHeader('Access-Control-Allow-Headers', '*');
@@ -34,5 +35,5 @@ app
     })
 
     .listen(port, () => {
-        console.log(`Example app listening at http://localhost:${port}`)
+        console.log(`App listening at http://localhost:${port}`)
     })

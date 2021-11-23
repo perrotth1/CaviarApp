@@ -44,7 +44,7 @@
           <p>Following:</p>
         </div>
         <div class="column is-">
-          <p>217</p>
+          <p>198</p>
         </div>
       </div>
 
