@@ -11,9 +11,16 @@ app
                 .catch(next)
     })
 
-    .get("/:user_id", (req, res, send) => {
+    .get("/:user_id", (req, res, next) => {
         model   .Get(req.params.user_id)
                 .then( user => res.send(user) )
+                .catch(next)
+    })
+
+    .get("/byhandle/:handle", (req, res, next) => {
+        model   .GetByHandle(req.params.handle)
+                .then( user => res.send(user) )
+                .catch(next)
     })
 
     .patch("/:user_id", (req, res, next) => {
@@ -29,19 +36,20 @@ app
     })
 
     .post("/register", (req, res, next) => {
-        model.AddUser(req.body)
-            .then( user => {
-                res.status(201).send(user);
-            })
-            .catch(next)
+        model   .AddUser(req.body)
+                .then( user => {
+                    res.status(201).send(user);
+                })
+                .catch(next)
     })
 
     .post("/login", (req, res, next) => {
-        model.Login(req.body.handle, req.body.password)
-            .then(user => {
-                res.send(user);
-            })
-            .catch(next)
+        model   .Login(req.body.handle, req.body.password)
+                .then(user => {
+                    console.log("Returned from model");
+                    res.send(user);
+                })
+                .catch(next)
     })
 
     .post("/seed", (req, res, next) => {

@@ -73,9 +73,10 @@ module.exports.GetAll = function GetAll() {
     return collection.find().toArray();
 }
 
-module.exports.GetWall = function GetWall(a_handle) {
-    return collection.aggregate(addOwnerPipeline).match({ user_handle: a_handle });
-
+module.exports.GetWall = async function GetWall(a_handle) {
+    console.log("In post model: Getting wall for " + a_handle)
+    
+    return await collection.find({ userHandle: a_handle }).toArray();
 }
 
 module.exports.Delete = async function Delete(a_post_id){
@@ -85,21 +86,25 @@ module.exports.Delete = async function Delete(a_post_id){
 }
 
 module.exports.GetFeed = async function (a_handle) {
-
-    const user = await collection.findOne({ a_handle });
+    console.log("In post model: getting feed for " + a_handle);
+    
+    const user = await Users.GetByHandle(a_handle);
 
     if(!user){
-        return Promise.reject({ code: 404, msg: "User not found"});
+        console.log("User not found " );
+        return Promise.reject({ code: 404, msg: "Posts not found: " + a_handle});
     }
-
+    
     //get following list field from user obj, filter by those approved, map creates array of each of their handles, then concat users own handle to the list as well
-    const targets = user.following.filter({ isApproved: true }).map(x => x.handle).concat(a_handle);
+    const targets = user.following.filter(x => x.isApproved == true).map(x => x.handle).concat(a_handle);
 
-    const query = collection.aggregate( [ { $match: { user_handle: { $in: targets } } } ].concat(addOwnerPipeline) );
+    //const query = collection.aggregate( [ { $match: { userHandle: { $in: targets } } } ].concat(addOwnerPipeline) );
 
-    console.log( query.toArray().toString() );
+    //console.log( query.toArray().toString() );
 
-    return query.toArray();
+    const posts = collection.find({ userHandle: { $in: targets }}).toArray();
+
+    return posts;
 
 }
 

@@ -30,10 +30,9 @@ const userList = [
     }
 ]
 
-module.exports.GetByHandle = (a_handle) => { 
-    collection
-        .findOne({ a_handle })
-        .then(x => ({ ...x, password: undefined }) );
+module.exports.GetByHandle = async function(a_handle) { 
+    const user = await collection.findOne({ userHandle: a_handle });
+    return { ...user, password: undefined }
 }
 
 module.exports.GetAll = () => {
@@ -80,12 +79,12 @@ module.exports.Update = async function Update(a_user_id, a_user) {
 
 module.exports.Login = async function Login(a_handle, a_password) {
 
-    console.log("Attempting login for user: " + { a_handle, a_password });
+    console.log("In users model, Attempting login for user: " + { a_handle, a_password });
 
-    const user = await collection.findOne({ a_handle });
+    const user = await collection.findOne({ userHandle: a_handle });
 
     if(!user){
-        return Promise.reject({ code: 401, msg: "No user found for that handle"});
+        return Promise.reject({ code: 401, msg: "No user found for that handle: " + a_handle});
     }
 
     const results = await bcrypt.compare(a_password, user.password);
@@ -95,6 +94,8 @@ module.exports.Login = async function Login(a_handle, a_password) {
     }
 
     console.log("Login Successful");
+
+    console.log("Username: " + user.userHandle);
 
     const userData = { ...user, password: undefined };
 
