@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const cors = require("cors");
 
 require('dotenv').config();
 
@@ -13,14 +14,18 @@ app
 
     .use('/', express.static(path.join(__dirname, '../docs')) ) 
 
-    //CORS Light headers; so chrome doesn't shut us down
+    .use(cors({
+        origin: '*'
+    }))
+
+    /*CORS Light headers; so chrome doesn't shut us down
     .use((req, res, next) => {   
-        console.log("Adding cors ")   
         res.setHeader('Access-Control-Allow-Origin', '*');   
-        res.setHeader('Access-Control-Allow-Methods', '*');
-        res.setHeader('Access-Control-Allow-Headers', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
         next();
     })
+    */
 
     .use(express.json())
 

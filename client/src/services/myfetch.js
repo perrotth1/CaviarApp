@@ -9,11 +9,9 @@ export async function api(url, data = null, method = null){
         if(data) {
             response = await fetch(API_ROOT + url, {
                 method: method ?? 'POST' ,
-                mode: 'cors',
-                credentials: 'same-origin',
                 cache: 'no-cache', 
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
             });
