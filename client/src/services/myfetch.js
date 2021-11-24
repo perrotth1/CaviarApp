@@ -10,6 +10,7 @@ export async function api(url, data = null, method = null){
             response = await fetch(API_ROOT + url, {
                 method: method ?? 'POST' ,
                 cache: 'no-cache', 
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -17,13 +18,12 @@ export async function api(url, data = null, method = null){
             });
         }
         else {
-            response = await fetch(API_ROOT);
+            response = await fetch(API_ROOT + url);
         }
 
         if(!response.ok) {
             throw await response.json();
         }
-
         return await response.json();
     }
     catch(err) {

@@ -18,13 +18,8 @@ app
     })
 
     .get("/wall/:handle", (req, res, next) => {
-        console.log("Wall handler in controller was called! Request: " + req)
+        console.log("Wall handler in controller was called!");
         model   .GetWall(req.params.handle)
-                    .then(response => {
-                        console.log(response);
-                    }).catch(err => {
-                        console.log(err);
-                    })
                 .then( x => res.send(x) )
                 .catch(next)
     })

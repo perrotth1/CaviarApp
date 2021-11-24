@@ -13,9 +13,10 @@ const userList = [
         lastName: 'Kisuke',
         userHandle: '@uruhara_kisuke',
         password: 'spondoulli',
-        profilePic: '../assets/placeholders/user1avatar.png',
+        profilePic: '/assets/placeholders/user1avatar.png',
         isAdmin: true,
         email: 'perrotth1@newpaltz.edu',
+        followers: [],
         following: [ { handle: '@tony_titanium', isApproved: true} ]
     },
     {
@@ -23,9 +24,10 @@ const userList = [
         lastName: 'Titatium',
         userHandle: '@tony_titanium',
         password: 'metal',
-        profilePic: '../assets/placeholders/user2avatar.jpg',
+        profilePic: '/assets/placeholders/user2avatar.jpg',
         isAdmin: false,
         email: 'titaniut1@newpaltz.edu',
+        followers: [],
         following: [ { handle: '@uruhara_kisuke', isApproved: true} ]
     }
 ]

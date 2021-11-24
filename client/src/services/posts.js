@@ -1,12 +1,12 @@
-import { api } from "./myfetch";
+import { api } from "./myfetch.js";
 
 
 export function GetAll() {
     return api('posts');
 }
 
-export function GetWall(handle) {
-    return api('posts/wall/' + handle);
+export function GetWall(a_user) {
+    return api('posts/wall/' + a_user);
 }
 
 export function GetFeed(handle) { 

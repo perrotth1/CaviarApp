@@ -9,18 +9,15 @@
         </div>
     </div>
 
-    <!--
-    <div class="UserPostCard" v-for="p in posts" :key="p.src">
-        <UserPostCard />
-    </div>
-    -->
+    <!--<UserPostCard v-for="post in posts" :key="post._id"></UserPostCard>-->
+    
 
 </div>
 </template>
 
 <script>
 import UserProfileCard from '../components/UserProfileCard.vue';
-//import UserPostCard from '../components/UserPostCard.vue';
+import UserPostCard from '../components/UserPostCard.vue';
 import UserPostMinimal from '../components/UserPostMinimal.vue';
 import { GetWall } from '../services/posts.js';
 import Session from '../services/session.js';
@@ -30,16 +27,15 @@ export default {
     components: { 
         UserProfileCard,
         UserPostMinimal,
-        //UserPostCard
+        UserPostCard
     },
     data: () => ({
         posts: []
     }),
     async mounted() {
-        console.log(Session.user);
         this.posts = await GetWall(Session.user.userHandle);
+        console.log("!!!" + this.posts);
     }
-
 }
 </script>
 

@@ -14,19 +14,14 @@ app
 
     .use('/', express.static(path.join(__dirname, '../docs')) ) 
 
-    .use(cors({
-        origin: '*'
-    }))
-
-    /*CORS Light headers; so chrome doesn't shut us down
-    .use((req, res, next) => {   
+    //CORS Light headers; so chrome doesn't shut us down
+    .use("*", (req, res, next) => {   
         res.setHeader('Access-Control-Allow-Origin', '*');   
         res.setHeader('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
         next();
     })
-    */
-
+    
     .use(express.json())
 
     .use('/posts', postsController)

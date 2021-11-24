@@ -9,6 +9,11 @@ module.exports.collection = collection;
 const userPosts = [
     {
         userHandle: "@uruhara_kisuke",
+        firstName: "name",
+        lastName: "name",
+        profilePic: "imageFile",
+        
+        title: "Straight Edge",
 
         imgTopSrc: "https://images-na.ssl-images-amazon.com/images/I/519pr6HAytL._AC_UL550_SR423,550_QL65_.jpg",
         imgTopText: "Gucci Men's Floral Puma Print T-Shirt",
@@ -30,6 +35,11 @@ const userPosts = [
     },
     {
         userHandle: "@tony_titanium",
+        firstName: "name",
+        lastName: "name",
+        profilePic: "imageFile",
+
+        title: "Gentle Jogger",
 
         imgTopSrc: "https://images-na.ssl-images-amazon.com/images/I/41zxpmatpIL._AC_UL558_SR429,558_QL65_.jpg",
         imgTopText: "Mens Mare Operato Rigato T-Shirt",
@@ -74,12 +84,11 @@ module.exports.GetAll = function GetAll() {
 }
 
 module.exports.GetWall = async function GetWall(a_handle) {
-    console.log("In post model: Getting wall for " + a_handle)
-    
+    console.log("In post model: Getting wall for " + a_handle);
     return await collection.find({ userHandle: a_handle }).toArray();
 }
 
-module.exports.Delete = async function Delete(a_post_id){
+module.exports.Delete = async function Delete(a_post_id) {
     const result = await collection.findOneAndDelete({ _id: new ObjectId(a_post_id)});
 
     return result.value;
@@ -99,7 +108,6 @@ module.exports.GetFeed = async function (a_handle) {
     const targets = user.following.filter(x => x.isApproved == true).map(x => x.handle).concat(a_handle);
 
     //const query = collection.aggregate( [ { $match: { userHandle: { $in: targets } } } ].concat(addOwnerPipeline) );
-
     //console.log( query.toArray().toString() );
 
     const posts = collection.find({ userHandle: { $in: targets }}).toArray();
@@ -110,12 +118,17 @@ module.exports.GetFeed = async function (a_handle) {
 
 module.exports.Add = async function Add(a_post){
 
-    a_post.postTime = Date();
+    const user = await Users.GetByHandle(a_post.userHandle);
 
+    a_post.firstName = user.firstName;
+    a_post.lastName = user.lastName;
+    a_post.profilePic = user.profilePic;
+    
+    a_post.postTime = Date();
+    
     const result = await collection.insertOne(a_post);
 
     a_post._id = result.insertedId;
-
     return { ...a_post };
 }
 

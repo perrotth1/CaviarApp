@@ -5,35 +5,25 @@
         <div class="card-content has-background-black" id="outfitArea">
           <div class="card-image">
             <figure class="image" id="topImg">
-              <img
-                src="https://images-na.ssl-images-amazon.com/images/I/519pr6HAytL._AC_UL550_SR423,550_QL65_.jpg"
-                alt="Placeholder image"
-              />
+              <!--<img :src="post.imgTopSrc" :alt="post.imgTopAlt" />-->
             </figure>
           </div>
           <div class="card-image" id="pantImg">
             <figure class="image">
-              <img
-                src="https://images-na.ssl-images-amazon.com/images/I/41qve4wrPYL._AC_UL550_SR423,550_QL65_.jpg"
-                alt="Placeholder image"
-              />
+              <!--<img :src="post.imgPantsSrc" :alt="post.imgPantsAlt" />-->
             </figure>
           </div>
           <div class="card-image" id="shoeImg">
             <figure class="image">
-              <img
-                src="https://m.media-amazon.com/images/I/81-YIHCJZ8L._AC_SX255_.jpg"
-                alt="Placeholder image"
-              />
+              <!--<img :src="post.imgShoesSrc" :alt="post.imgShoesAlt" />-->
             </figure>
           </div>
         </div>
       </div>
-
       <div class="column is-half">
         <div class="card-content">
           <div class="media">
-            <p class="title is-2">OUTFIT TITLE</p>
+            <p class="title is-2"> {{ post.title }} </p>
           </div>
 
           <div class="media">
@@ -45,7 +35,7 @@
                   </span>
                 </div>
                 <div class="column is-2">
-                  <p class="title is-6">4455</p>
+                  <p class="title is-6">69</p>
                 </div>
                 <div class="column is-3" style="margin-left: auto">
                   <span class="icon">
@@ -67,17 +57,15 @@
             </div>
 
             <div class="media-content">
-              <p class="title is-4">John Smith</p>
-              <p class="subtitle is-6">@johnsmith</p>
+              <p class="title is-4">{{ fullName }}</p>
+              <p class="subtitle is-6">{{ post.user.userHandle }}</p>
             </div>
           </div>
 
           <div class="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            nec iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
-            <a href="#">#responsive</a>
+            {{ post.caption }}
             <br />
-            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+            {{ post.postTime }}
           </div>
         </div>
       </div>
@@ -86,7 +74,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    post: Object
+  },
+  computed: {
+    fullName() {
+      return(this.post.firstName + ' ' + this.post.lastName);
+    }
+  }
+};
 </script>
 
 <style>
