@@ -83,9 +83,9 @@ module.exports.GetAll = function GetAll() {
     return collection.find().toArray();
 }
 
-module.exports.GetWall = async function GetWall(a_handle) {
+module.exports.GetWall = function GetWall(a_handle) {
     console.log("In post model: Getting wall for " + a_handle);
-    return await collection.find({ userHandle: a_handle }).toArray();
+    return collection.find({ userHandle: a_handle }).toArray();
 }
 
 module.exports.Delete = async function Delete(a_post_id) {

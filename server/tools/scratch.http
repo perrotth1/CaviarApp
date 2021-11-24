@@ -10,9 +10,9 @@ Content-Type: application/json
     
     {
         "userHandle": "@uruhara_kisuke",
-        "firstName": "Uruhara",
-        "lastName": "Kisuke",
-        "profilePic": "/assets/placeholders/user2avatar.jpg",
+        "firstName": "_",
+        "lastName": "_",
+        "profilePic": "_",
 
         "title": "Grape Ape",
 
@@ -40,9 +40,9 @@ Content-Type: application/json
     
     {
         "userHandle": "@fuck_man",
-        "firstName": "Pho",
-        "lastName": "Man",
-        "profilePic": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0876e399-6c27-4b0c-bf43-0ccd01065128/d5c74js-837724c3-6eb5-4b43-8dcf-44ec1c10153c.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzA4NzZlMzk5LTZjMjctNGIwYy1iZjQzLTBjY2QwMTA2NTEyOFwvZDVjNzRqcy04Mzc3MjRjMy02ZWI1LTRiNDMtOGRjZi00NGVjMWMxMDE1M2MuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.RA8X7F_0WZac0XwxZ5Z9RcHqY4U7zU7vcUJZA0Ix9cY",
+        "firstName": "_",
+        "lastName": "_",
+        "profilePic": "_",
 
         "title": "Silly Monkey Shirt Outfit",
 
@@ -55,7 +55,7 @@ Content-Type: application/json
         "imgShoesSrc": "https://m.media-amazon.com/images/I/8112-x07qKL._AC_SX255_.jpg",
         "imgShoesText": "New Balance 996v3",
 
-        "postTime": "Mon Nov 22 2021 23:38:47 GMT-0500 (Eastern Standard Time)",
+        "postTime": "_",
 
         "caption": "I stole this outfit from @uruhara_kisuke",
 

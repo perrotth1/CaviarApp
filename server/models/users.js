@@ -13,10 +13,10 @@ const userList = [
         lastName: 'Kisuke',
         userHandle: '@uruhara_kisuke',
         password: 'spondoulli',
-        profilePic: '/assets/placeholders/user1avatar.png',
+        profilePic: 'https://practicaltyping.com/wp-content/uploads/2020/05/urahara.jpg',
         isAdmin: true,
         email: 'perrotth1@newpaltz.edu',
-        followers: [],
+        followers: [ { handle: '@tony_titanium', isApproved: true} ],
         following: [ { handle: '@tony_titanium', isApproved: true} ]
     },
     {
@@ -24,10 +24,10 @@ const userList = [
         lastName: 'Titatium',
         userHandle: '@tony_titanium',
         password: 'metal',
-        profilePic: '/assets/placeholders/user2avatar.jpg',
+        profilePic: 'https://cdn.shopify.com/s/files/1/2354/4133/products/TONY_700x.jpg',
         isAdmin: false,
         email: 'titaniut1@newpaltz.edu',
-        followers: [],
+        followers: [ { handle: '@uruhara_kisuke', isApproved: true} ],
         following: [ { handle: '@uruhara_kisuke', isApproved: true} ]
     }
 ]
