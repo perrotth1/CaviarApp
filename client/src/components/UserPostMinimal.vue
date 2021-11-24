@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" v-if="post">
     <div class="card-content">
       <div class="columns">
         <div class="column is-3">
@@ -8,33 +8,24 @@
           </span>
         </div>
         <div class="column">
-          <p class="title is-3">OUTFIT TITLE</p>
+          <p class="title is-3">{{post.title}}</p>
         </div>
       </div>
     </div>
     <div class="card-content has-background-black">
       <div class="card-image">
         <figure class="image" id="topImg">
-          <img
-            src="https://images-na.ssl-images-amazon.com/images/I/519pr6HAytL._AC_UL550_SR423,550_QL65_.jpg"
-            alt="Placeholder image"
-          />
+          <img :src="post.imgTopSrc" :alt="post.imgTopAlt" />
         </figure>
       </div>
       <div class="card-image">
         <figure class="image">
-          <img
-            src="https://images-na.ssl-images-amazon.com/images/I/41qve4wrPYL._AC_UL550_SR423,550_QL65_.jpg"
-            alt="Placeholder image"
-          />
+          <img :src="post.imgPantsSrc" :alt="post.imgPantsAlt" />
         </figure>
       </div>
       <div class="card-image">
         <figure class="image">
-          <img
-            src="https://m.media-amazon.com/images/I/81-YIHCJZ8L._AC_SX255_.jpg"
-            alt="Placeholder image"
-          />
+          <img :src="post.imgShoesSrc" :alt="post.imgShoesAlt" />
         </figure>
       </div>
     </div>
@@ -47,18 +38,21 @@
           </span>
         </div>
         <div class="column is-2">
-          <p class="title is-6">4455</p>
-        </div>
-        <div class="column is-5" style="margin-left: auto">
-          <p class="card-subtitle">11:09 PM - 1 Jan 2016</p>
+          <p class="title is-6">{{post.likes}}</p>
         </div>
       </div>
+      <hr>
+      <p class="card-subtitle">{{post.postTime}}</p>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    post: Object
+  }
+};
 </script>
 
 <style>

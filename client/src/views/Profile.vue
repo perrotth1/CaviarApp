@@ -2,22 +2,24 @@
 <div class="section">
     <div class="columns">
         <div class="column is-half">
-            <UserProfileCard/>
+            <user-profile-card :user="user"/>
         </div>
         <div class="column is-half">
-            <UserPostMinimal/>
+            <user-post-minimal :post="topPost" />
         </div>
     </div>
 
-    <!--<UserPostCard v-for="post in posts" :key="post._id"></UserPostCard>-->
-    
+
+    <div class="post" v-for="p in posts" :key="p._id">
+        <post :post="p" />
+    </div>
 
 </div>
 </template>
 
 <script>
 import UserProfileCard from '../components/UserProfileCard.vue';
-import UserPostCard from '../components/UserPostCard.vue';
+import post from '../components/UserPostCard.vue';
 import UserPostMinimal from '../components/UserPostMinimal.vue';
 import { GetWall } from '../services/posts.js';
 import Session from '../services/session.js';
@@ -27,14 +29,32 @@ export default {
     components: { 
         UserProfileCard,
         UserPostMinimal,
-        UserPostCard
+        post
     },
     data: () => ({
-        posts: []
+        posts: null,
+        topPost: null,
+        user: null
     }),
     async mounted() {
+        //get user wall
         this.posts = await GetWall(Session.user.userHandle);
-        console.log("!!!" + this.posts);
+
+        //get user
+        this.user = Session.user; 
+
+        //find top post
+        let topIndex = 0
+        let topLikes = 0
+        for(const p of this.posts) {
+            if(p.likes > topLikes) {
+                topIndex = this.posts.indexOf(p);
+                topLikes = p.likes;
+            }
+        }
+        this.topPost = this.posts[topIndex];
+
+        console.log("[!] Mounted Profile");
     }
 }
 </script>

@@ -1,19 +1,19 @@
 <template>
-  <div class="card">
+  <div class="card" v-if="user">
     <div class="card-content">
       <div class="columns">
         <div class="column is-3">
           <figure class="image is-64x64">
             <img
-              src="../assets/placeholders/user1avatar.png"
-              alt="Placeholder image"
+              :src="user.profilePic"
+              alt="Profile picture"
             />
           </figure>
         </div>
         <div class="column">
           <div class="media-content">
-            <p class="title">Uruhara Kisuke</p>
-            <p class="subtitle">@uruhara_kisuke</p>
+            <p class="title">{{fullName}}</p>
+            <p class="subtitle">{{user.userHandle}}</p>
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
           <p>Followers:</p>
         </div>
         <div class="column is-">
-          <p>217</p>
+          <p>{{user.followers.length}}</p>
         </div>
       </div>
 
@@ -44,7 +44,7 @@
           <p>Following:</p>
         </div>
         <div class="column is-">
-          <p>198</p>
+          <p>{{user.following.length}}</p>
         </div>
       </div>
 
@@ -54,7 +54,17 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    user: Object
+  },
+  computed: {
+    fullName() {
+      return(this.user.firstName + ' ' + this.user.lastName);
+    }
+  }
+
+};
 </script>
 
 <style>

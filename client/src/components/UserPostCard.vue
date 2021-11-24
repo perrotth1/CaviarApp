@@ -1,21 +1,21 @@
 <template>
-  <div class="card">
+  <div class="card" v-if="post">
     <div class="columns">
       <div class="column is-half">
         <div class="card-content has-background-black" id="outfitArea">
           <div class="card-image">
             <figure class="image" id="topImg">
-              <!--<img :src="post.imgTopSrc" :alt="post.imgTopAlt" />-->
+              <img :src="post.imgTopSrc" :alt="post.imgTopAlt" />
             </figure>
           </div>
           <div class="card-image" id="pantImg">
             <figure class="image">
-              <!--<img :src="post.imgPantsSrc" :alt="post.imgPantsAlt" />-->
+              <img :src="post.imgPantsSrc" :alt="post.imgPantsAlt" />
             </figure>
           </div>
           <div class="card-image" id="shoeImg">
             <figure class="image">
-              <!--<img :src="post.imgShoesSrc" :alt="post.imgShoesAlt" />-->
+              <img :src="post.imgShoesSrc" :alt="post.imgShoesAlt" />
             </figure>
           </div>
         </div>
@@ -23,7 +23,7 @@
       <div class="column is-half">
         <div class="card-content">
           <div class="media">
-            <p class="title is-2"> {{ post.title }} </p>
+            <p class="title is-2"> {{post.title}} </p>
           </div>
 
           <div class="media">
@@ -35,7 +35,7 @@
                   </span>
                 </div>
                 <div class="column is-2">
-                  <p class="title is-6">69</p>
+                  <p class="title is-6"> {{post.likes}} </p>
                 </div>
                 <div class="column is-3" style="margin-left: auto">
                   <span class="icon">
@@ -50,22 +50,22 @@
             <div class="media-left">
               <figure class="image is-48x48">
                 <img
-                  src="../assets/placeholders/user1avatar.png"
-                  alt="Placeholder image"
+                  :src="post.profilePic"
+                  alt="Profile picture"
                 />
               </figure>
             </div>
 
             <div class="media-content">
-              <p class="title is-4">{{ fullName }}</p>
-              <p class="subtitle is-6">{{ post.user.userHandle }}</p>
+              <p class="title is-4" > {{fullName}} </p>
+              <p class="subtitle is-6" > {{post.userHandle}} </p>
             </div>
           </div>
 
           <div class="content">
-            {{ post.caption }}
-            <br />
-            {{ post.postTime }}
+            {{post.caption}}
+            <hr />
+            {{post.postTime}}
           </div>
         </div>
       </div>
@@ -82,6 +82,9 @@ export default {
     fullName() {
       return(this.post.firstName + ' ' + this.post.lastName);
     }
+  },
+  async mounted() {
+    console.log("Mounting user post card!");
   }
 };
 </script>
