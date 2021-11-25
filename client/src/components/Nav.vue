@@ -21,9 +21,9 @@
 
     <div class="navbar-menu" :class="{ 'is-active': isActive }">
       <div class="navbar-start">
-        <router-link class="navbar-item" to="/profile" active-class="is-active">
+        <router-link class="navbar-item" to="/profile" active-class="is-active" v-if="Session.user">
           <figure class="image">
-            <img src="../assets/placeholders/user1avatar.png" />
+            <img :src="Session.user.profilePic" alt="Profile nav item"/>
           </figure>
         </router-link>
 
@@ -62,7 +62,7 @@
 
       <div class="navbar-end">
         <div class="navbar-item">
-          <LoginBadge />
+          <login-badge />
         </div>
       </div>
     </div>
@@ -70,14 +70,15 @@
 </template>
 
 <script>
-import LoginBadge from './LoginBadge';
+import LoginBadge from './LoginBadge.vue';
+import Session from '../services/session.js';
 
 export default {
-  data() {
-    return {
-      isActive: false,
-    };
-  },
+
+  data: () => ({
+    isActive: true,
+    Session
+  }),
   components: {
     LoginBadge
   }
@@ -85,3 +86,7 @@ export default {
 </script>
 
 
+<style>
+
+
+</style>
