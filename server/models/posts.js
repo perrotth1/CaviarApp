@@ -1,7 +1,7 @@
 const { ObjectId } = require("bson");
 
 const Users = require("./users"); 
-const { client } = require("./mongo");
+const { client } = require("./mongo.js");
 
 const collection = client.db(process.env.MONGO_DBNAME).collection('posts');
 module.exports.collection = collection;
