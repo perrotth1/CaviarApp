@@ -95,3 +95,15 @@ Content-Type: application/json
         "following": [ { "handle": "@uruhara_kisuke", "isApproved": true} ]
     }
 
+
+###
+POST http://localhost:3100/items/seed
+
+###
+http://localhost:3100/items/shoes/search?q=ASICS
+
+###
+http://localhost:3100/items/tops/search?q=Gucci
+
+###
+http://localhost:3100/items/pants/search?q=red

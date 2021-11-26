@@ -3,7 +3,7 @@ import Session from '../services/session';
 
 
 import Home from '../views/Home.vue';
-import Post from '../views/Post.vue';
+import MakePost from '../views/MakePost.vue';
 import Login from '../views/Login.vue';
 import Signup from '../views/Signup.vue';
 import Profile from '../views/Profile.vue';
@@ -27,8 +27,8 @@ const routes = [
   },
   {
     path: '/post',
-    name: 'Post',
-    component: Post,
+    name: 'MakePost',
+    component: MakePost,
     meta: { requiresLogin: true }
   },
   {

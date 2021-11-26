@@ -1,11 +1,11 @@
 const express = require("express");
 const path = require("path");
-const cors = require("cors");
 
 require('dotenv').config();
 
 const usersController = require('./controllers/users.js'); 
 const postsController = require('./controllers/posts.js');
+const itemsController = require('./controllers/items.js');
 
 const app = express();
 const port = process.env.PORT || 3000;  
@@ -26,6 +26,7 @@ app
 
     .use('/posts', postsController)
     .use('/users', usersController)
+    .use('/items', itemsController)
     
     .get('*', (req, res) => res.sendFile(path.join(__dirname, '../docs/index.html')))
 
