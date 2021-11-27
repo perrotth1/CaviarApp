@@ -106,7 +106,7 @@ module.exports.GetFeed = async function (a_handle) {
     
     const targets = user.following.filter(x => x.isApproved == true).map(x => x.handle).concat(a_handle);
 
-    const posts = await collection.find({ userHandle: { $in: targets }}).toArray();
+    const posts = collection.find({ userHandle: { $in: targets }}).toArray();
 
     return posts;
 
