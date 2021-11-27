@@ -48,7 +48,11 @@ module.exports.Search = async function Search(a_type, a_term) {
             return Promise.reject({code: 404, msg: "Incorrect mode"});
     }  
 
-    const results = targetColl.find( { A: new RegExp(a_term, "i") } ).toArray();
+    const results = await targetColl.find( { A: new RegExp(a_term, "i") } ).toArray();
+
+    if(results.length > 40){
+        results.splice(40);
+    }
 
     return results;
 }
