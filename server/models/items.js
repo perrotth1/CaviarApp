@@ -48,10 +48,20 @@ module.exports.Search = async function Search(a_type, a_term) {
             return Promise.reject({code: 404, msg: "Incorrect mode"});
     }  
 
-    const results = await targetColl.find( { A: new RegExp(a_term, "i") } ).toArray();
+    const terms = a_term.split(' ');
+    console.log(terms)
 
-    if(results.length > 40){
-        results.splice(40);
+    let results = await targetColl.find( { A: new RegExp(terms[0], "i") } ).toArray();
+    terms.splice(0, 1);
+    
+    for(const t of terms) {
+        results = results.filter(r => r.A.match( new RegExp(t, "i") ) );
+    }
+
+    console.log(results);
+
+    if(results.length > 60){
+        results.splice(60);
     }
 
     return results;
