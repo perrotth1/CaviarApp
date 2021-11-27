@@ -39,7 +39,7 @@
           </span>
         </router-link>
 
-        <router-link class="navbar-item" to="/post" active-class="is-active">
+        <router-link class="navbar-item" to="/makepost" active-class="is-active">
           <span class="icon">
             <i class="fas fa-comment-alt"></i>
           </span>
@@ -76,7 +76,7 @@ import Session from '../services/session.js';
 export default {
 
   data: () => ({
-    isActive: true,
+    isActive: false,
     Session
   }),
   components: {

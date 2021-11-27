@@ -26,7 +26,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/post',
+    path: '/makepost',
     name: 'MakePost',
     component: MakePost,
     meta: { requiresLogin: true }
