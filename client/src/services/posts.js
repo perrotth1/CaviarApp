@@ -18,7 +18,7 @@ export function Get(post_id) {
 }
 
 export function Add(post) {
-    return api('posts/add/', post);
+    return api('posts/', post);
 }
 
 export function Delete(post_id) {

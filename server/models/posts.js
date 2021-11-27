@@ -104,13 +104,9 @@ module.exports.GetFeed = async function (a_handle) {
         return Promise.reject({ code: 404, msg: "Posts not found: " + a_handle});
     }
     
-    //get following list field from user obj, filter by those approved, map creates array of each of their handles, then concat users own handle to the list as well
     const targets = user.following.filter(x => x.isApproved == true).map(x => x.handle).concat(a_handle);
 
-    //const query = collection.aggregate( [ { $match: { userHandle: { $in: targets } } } ].concat(addOwnerPipeline) );
-    //console.log( query.toArray().toString() );
-
-    const posts = collection.find({ userHandle: { $in: targets }}).toArray();
+    const posts = await collection.find({ userHandle: { $in: targets }}).toArray();
 
     return posts;
 
