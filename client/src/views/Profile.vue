@@ -4,7 +4,7 @@
         <div class="column is-half">
             <user-profile-card :user="user"/>
         </div>
-        <div class="column is-half">
+        <div class="column is-half" v-if="posts">
             <user-post-minimal :post="topPost" />
         </div>
     </div>
@@ -43,18 +43,22 @@ export default {
         //get user
         this.user = Session.user; 
 
-        //find top post
-        let topIndex = 0
-        let topLikes = 0
-        for(const p of this.posts) {
-            if(p.likes > topLikes) {
-                topIndex = this.posts.indexOf(p);
-                topLikes = p.likes;
-            }
+        if(this.posts.length == 0){
+            this.posts = null;
+            this.topPost = null;
         }
-        this.topPost = this.posts[topIndex];
-
-        console.log("[!] Mounted Profile");
+        else {
+            //find top post
+            let topIndex = 0
+            let topLikes = 0
+            for(const p of this.posts) {
+                if(p.likes > topLikes) {
+                    topIndex = this.posts.indexOf(p);
+                    topLikes = p.likes;
+                }
+            }
+            this.topPost = this.posts[topIndex];
+        }
     }
 }
 </script>
