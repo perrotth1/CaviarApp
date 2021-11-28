@@ -21,7 +21,8 @@
 
     <div class="navbar-menu" :class="{ 'is-active': isActive }">
       <div class="navbar-start">
-        <router-link class="navbar-item" to="/profile" active-class="is-active" v-if="Session.user">
+        <router-link class="navbar-item" active-class="is-active" v-if="Session.user" :to=" { name: 'Profile', query: { user: Session.user.userHandle } }">
+        <!--<router-link class="navbar-item" to="/profile" active-class="is-active" v-if="Session.user">-->
           <figure class="image">
             <img :src="Session.user.profilePic" alt="Profile nav item"/>
           </figure>
