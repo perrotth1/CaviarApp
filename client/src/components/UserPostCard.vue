@@ -46,19 +46,26 @@
             </div>
           </div>
 
+        
           <div class="media">
+
             <div class="media-left">
+
+              <router-link :to=" { name: 'Profile', query: { user: post.userHandle } }">
               <figure class="image is-48x48">
                 <img
                   :src="post.profilePic"
                   alt="Profile picture"
                 />
               </figure>
+              </router-link>
             </div>
 
             <div class="media-content">
-              <p class="title is-4" > {{fullName}} </p>
-              <p class="subtitle is-6" > {{post.userHandle}} </p>
+              <router-link :to=" { name: 'Profile', query: { user: post.userHandle } }">
+                <p class="title is-4" > {{fullName}} </p>
+                <p class="subtitle is-6" > {{post.userHandle}} </p>
+              </router-link>
             </div>
           </div>
 
