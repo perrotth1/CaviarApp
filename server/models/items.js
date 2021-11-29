@@ -60,8 +60,8 @@ module.exports.Search = async function Search(a_type, a_term) {
 
     console.log(results);
 
-    if(results.length > 60){
-        results.splice(60);
+    if(results.length > 500){
+        results.splice(500);
     }
 
     return results;
