@@ -1,6 +1,7 @@
 <template>
+<div class="section">
   <div class="card">
-    <form class="section" @submit.prevent="publishPost()">
+    <form  @submit.prevent="publishPost()">
       <div class="columns">
         <div class="column is-half">
           <div class="card-content has-background-black" id="outfitArea">
@@ -67,6 +68,7 @@
       </div>
     </form>
   </div>
+</div>
 </template>
 
 <script>
