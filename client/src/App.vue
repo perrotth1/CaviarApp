@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="appBackground">
     <Nav />
 
     <router-view />
@@ -21,6 +21,14 @@ export default {
 
 };
 </script>
+
+<style scoped>
+
+.appBackground {
+  background-color: rgb(187, 220, 224);
+}
+
+</style>
 
 
 
