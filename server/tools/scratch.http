@@ -5,36 +5,7 @@ http://localhost:3100/posts
 ###
 http://localhost:3100/
 ###
-POST http://localhost:3100/posts
-Content-Type: application/json
-    
-    {
-        "userHandle": "@uruhara_kisuke",
-        "firstName": "_",
-        "lastName": "_",
-        "profilePic": "_",
 
-        "title": "Grape Ape",
-
-        "imgTopSrc": "https://images-na.ssl-images-amazon.com/images/I/5113xfJXuXL._AC_UL650_SR500,650_QL65_.jpg",
-        "imgTopText": "Mens Gorilla Dyed T-Shirt",
-
-        "imgPantsSrc": "https://images-na.ssl-images-amazon.com/images/I/412v4v+CEaL._AC_UL550_SR423,550_QL65_.jpg",
-        "imgPantsText": "Rick Owens Men's Drop Crotch Cropped Pants",
-
-        "imgShoesSrc": "https://m.media-amazon.com/images/I/8112-x07qKL._AC_SX255_.jpg",
-        "imgShoesText": "New Balance 996v3",
-
-        "postTime": "Mon Nov 22 2021 23:38:47 GMT-0500 (Eastern Standard Time)",
-
-        "caption": "Another fine day",
-
-        "likes": 12,
-
-        "isPublic": true
-
-    }
-###
 POST http://localhost:3100/posts
 Content-Type: application/json
     
@@ -47,13 +18,13 @@ Content-Type: application/json
         "title": "Silly Monkey Shirt Outfit",
 
         "imgTopSrc": "https://images-na.ssl-images-amazon.com/images/I/5113xfJXuXL._AC_UL650_SR500,650_QL65_.jpg",
-        "imgTopText": "Mens Gorilla Dyed T-Shirt",
+        "imgTopAlt": "Mens Gorilla Dyed T-Shirt",
 
         "imgPantsSrc": "https://images-na.ssl-images-amazon.com/images/I/412v4v+CEaL._AC_UL550_SR423,550_QL65_.jpg",
-        "imgPantsText": "Rick Owens Men's Drop Crotch Cropped Pants",
+        "imgPantsAlt": "Rick Owens Men's Drop Crotch Cropped Pants",
 
         "imgShoesSrc": "https://m.media-amazon.com/images/I/8112-x07qKL._AC_SX255_.jpg",
-        "imgShoesText": "New Balance 996v3",
+        "imgShoesAlt": "New Balance 996v3",
 
         "postTime": "_",
 
@@ -92,7 +63,8 @@ Content-Type: application/json
         "isAdmin": false,
         "email": "manf@newpaltz.edu",
         "followers": [],
-        "following": [ { "handle": "@uruhara_kisuke", "isApproved": true} ]
+        "following": [ { "handle": "@uruhara_kisuke", "isApproved": true} ],
+        "likedPosts": []
     }
 
 

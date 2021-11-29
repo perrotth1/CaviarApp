@@ -173,8 +173,6 @@ export default {
         //Update user object in session 
         await Session.UpdateUser(); 
 
-        console.log("User liked posts: " + Session.user.likedPosts);
-
         if( Session.user.likedPosts.includes(this.post._id) ) {
           this.likedByUser = true;
         }
