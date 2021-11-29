@@ -1,4 +1,5 @@
 import { NotificationProgrammatic } from "@oruga-ui/oruga-next/dist/esm/notification";
+import { GetByHandle } from "./users.js";
 
 import router from '../router';
 import { Login } from './users';
@@ -20,6 +21,11 @@ const session = {
         }
         catch(error) {
             this.Error(error);
+        }
+    },
+    async UpdateUser() {
+        if(this.user != null) {
+            this.user = await GetByHandle(this.user.userHandle);
         }
     },
     Error(a_error) {

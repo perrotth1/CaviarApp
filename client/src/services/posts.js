@@ -25,3 +25,11 @@ export function Delete(post_id) {
     console.log("In posts service delete id is:" + post_id)
     return api('posts/' + post_id, {}, 'DELETE');
 } 
+
+export function LikePost(a_user, a_post_id) {
+    return api('posts/likepost', { a_user, a_post_id });
+}
+
+export function UnlikePost(a_user, a_post_id) {
+    return api('posts/unlikepost', { a_user, a_post_id });
+}

@@ -1,6 +1,6 @@
 const { ObjectId } = require("bson");
 
-const Users = require("./users"); 
+const Users = require("./users.js"); 
 const { client } = require("./mongo.js");
 
 const collection = client.db(process.env.MONGO_DBNAME).collection('posts');
@@ -74,8 +74,8 @@ const addOwnerPipeline = [
     { $project: { "owner.password": 0 } }
 ];
 
-module.exports.Get = function Get( a_post_id ) {
-    return collection.findOne({ _id: new ObjectId(a_post_id )});
+module.exports.Get = async function Get( a_post_id ) {
+    return await collection.findOne({ _id: new ObjectId(a_post_id )});
 }
 
 module.exports.GetAll = function GetAll() {
@@ -88,13 +88,7 @@ module.exports.GetWall = function GetWall(a_handle) {
     return collection.find({ userHandle: a_handle }).toArray();
 }
 
-module.exports.Delete = async function Delete(a_post_id) {
-    const result = await collection.findOneAndDelete({ _id: new ObjectId(a_post_id)});
-
-    return result.value;
-}
-
-module.exports.GetFeed = async function (a_handle) {
+module.exports.GetFeed = async function GetFeed(a_handle) {
     console.log("In post model: getting feed for " + a_handle);
     
     const user = await Users.GetByHandle(a_handle);
@@ -130,8 +124,53 @@ module.exports.Add = async function Add(a_post){
     return { ...a_post };
 }
 
+module.exports.Delete = async function Delete(a_post_id) {
+    const result = await collection.findOneAndDelete({ _id: new ObjectId(a_post_id)});
+
+    return result.value;
+}
+
 module.exports.Seed = async function Seed(){
     for(const p of userPosts){
         await module.exports.Add(p);
     }
+}
+
+module.exports.LikePost = async function LikePost (a_user, a_post_id) {
+    console.log("Likepost called")
+    a_user.likedPosts.push(a_post_id);
+
+    const post = await module.exports.Get(a_post_id);
+    post.likes++;
+
+    await module.exports.Update(post, a_post_id);
+
+    const result = await Users.Update(a_user, a_user._id);
+    return result;
+}
+
+module.exports.UnlikePost = async function UnlikePost (a_user, a_post_id) {
+    const targetIndex = a_user.likedPosts.indexOf(a_post_id);
+    a_user.likedPosts.splice(targetIndex, 1);
+
+    const post = await module.exports.Get(a_post_id);
+    post.likes--;
+    await module.exports.Update(post, a_post_id);
+
+    const result = await Users.Update(a_user, a_user._id);
+    return result;
+}
+
+module.exports.Update = async function Update(a_post_new_obj, a_post_id) {
+
+    //remove the _id field from new object so mongo doesn't get mad about trying to overwrite _id field 
+    delete(a_post_new_obj._id);
+
+    const results = await collection.findOneAndUpdate(
+        { _id: new ObjectId(a_post_id) }, 
+        { $set: a_post_new_obj },
+        { returnDocument: 'after'}
+    );
+        
+    return { ...results.value, password: undefined };
 }

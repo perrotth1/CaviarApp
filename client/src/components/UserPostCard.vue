@@ -29,18 +29,79 @@
           <div class="media">
             <div class="media-content">
               <div class="columns">
-                <div class="column is-2">
-                  <span class="icon">
-                    <i class="fas fa-heart"></i>
-                  </span>
+
+                <div class="column is-3">
+                
+                <!--like button-->
+
+                <!--If user logged in-->
+                <div v-if="enableLikeButton">
+
+                  <!--If user has already liked post-->
+                  <div v-if="likedByUser">
+                    <button
+                      class="button"
+                      :class="{ 'is-danger': likeButtonHover }"
+                      @mouseover="likeButtonHover = true"
+                      @mouseleave="likeButtonHover = false"
+                      @click="Unlike()"
+                    >
+                      <div v-if="!likeButtonHover">
+                        <span class="icon">
+                          <i class="fas fa-heart fa-lg"></i>
+                        </span>
+                        <span>{{likes}}</span>
+                      </div>
+                      <div v-else>
+                        <span class="icon is-small">
+                          <i class="fas fa-times"></i>
+                        </span>
+                        <span>{{likes}}</span>
+                      </div>
+                    </button>
+                  </div>
+
+                  <!--If user has not yet liked post-->
+                  <div v-else>
+                    <button
+                      class="button"
+                      :class="{ 'is-success': likeButtonHover }"
+                      @mouseover="likeButtonHover = true"
+                      @mouseleave="likeButtonHover = false"
+                      @click="Like()"
+                    >
+                      <span class="icon">
+                        <i class="far fa-heart fa-lg"></i>
+                      </span>
+                      <span>{{likes}}</span>
+                      
+                    </button>
+                  </div>
                 </div>
-                <div class="column is-2">
-                  <p class="title is-6"> {{post.likes}} </p>
+                <!--if user not logged in, nothing happens on click -->
+                <div v-else>
+                  <button
+                      class="button"
+                    >
+                      <span class="icon">
+                        <i class="far fa-heart fa-lg"></i>
+                      </span>
+                      <span>{{likes}}</span>
+                      
+                    </button>
                 </div>
+
+                </div>
+
                 <div class="column is-3" style="margin-left: auto">
+                
+                <button class="button" type="button">
                   <span class="icon">
-                    <i class="fas fa-share"></i>
+                    <i class="fas fa-share fa-lg"></i>
                   </span>
+                  <span>Share</span>
+                </button>
+
                 </div>
               </div>
             </div>
@@ -72,6 +133,12 @@
           <div class="content">
             {{post.caption}}
             <hr />
+              <ul>
+                <li>{{post.imgTopAlt}}</li>
+                <li>{{post.imgPantsAlt}}</li>
+                <li>{{post.imgShoesAlt}}</li>
+              </ul>
+            <hr /> 
             {{post.postTime}}
           </div>
         </div>
@@ -81,6 +148,10 @@
 </template>
 
 <script>
+import { LikePost, UnlikePost } from "../services/posts.js";
+
+import Session from "../services/session.js";
+
 export default {
   props: {
     post: Object
@@ -91,8 +162,47 @@ export default {
     }
   },
   async mounted() {
-    console.log("Mounting user post card!");
-  }
+    this.likes = this.post.likes;
+    this.loadContent();
+  },
+  methods: {
+    async loadContent () {
+      if( Session.user ) {
+        this.enableLikeButton = true;
+
+        //Update user object in session 
+        await Session.UpdateUser(); 
+
+        console.log("User liked posts: " + Session.user.likedPosts);
+
+        if( Session.user.likedPosts.includes(this.post._id) ) {
+          this.likedByUser = true;
+        }
+        else {
+          this.likedByUser = false;
+        }
+      }
+      else {
+        this.enableLikeButton = false;
+      }
+    },
+    async Like () {
+      await LikePost( Session.user, this.post._id );
+      this.likes++;
+      this.loadContent();
+    },
+    async Unlike () {
+      await UnlikePost( Session.user, this.post._id );
+      this.likes--;
+      this.loadContent();
+    }
+  },
+  data: () => ({
+    likedByUser: false,
+    enableLikeButton: false,
+    likeButtonHover: false,
+    likes: null
+  })
 };
 </script>
 

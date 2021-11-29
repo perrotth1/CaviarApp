@@ -54,4 +54,16 @@ app
                 .catch(next)
     })
 
+    .post("/likepost", (req, res, next) => {
+        model   .LikePost(req.body.a_user, req.body.a_post_id)
+                .then( x => res.send(x) )
+                .catch(next)
+    })
+
+    .post("/unlikepost", (req, res, next) => {
+        model   .UnlikePost(req.body.a_user, req.body.a_post_id)
+                .then( x => res.send(x) )
+                .catch(next)
+    })
+
 module.exports = app;

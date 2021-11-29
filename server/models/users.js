@@ -17,7 +17,8 @@ const userList = [
         isAdmin: true,
         email: 'perrotth1@newpaltz.edu',
         followers: [ { handle: '@tony_titanium', isApproved: true} ],
-        following: [ { handle: '@tony_titanium', isApproved: true} ]
+        following: [ { handle: '@tony_titanium', isApproved: true} ],
+        likedPosts: []
     },
     {
         firstName: 'Tony',
@@ -28,7 +29,8 @@ const userList = [
         isAdmin: false,
         email: 'titaniut1@newpaltz.edu',
         followers: [ { handle: '@uruhara_kisuke', isApproved: true} ],
-        following: [ { handle: '@uruhara_kisuke', isApproved: true} ]
+        following: [ { handle: '@uruhara_kisuke', isApproved: true} ],
+        likedPosts: []
     }
 ]
 
@@ -112,4 +114,29 @@ module.exports.Seed = async function Seed() {
     for(const u of userList){
         await module.exports.AddUser(u);
     }
+}
+
+
+
+module.exports.Follow = function Follow () {
+    //
+}
+
+module.exports.Unfollow = function Unfollow () {
+    //
+}
+
+module.exports.Update = async function Update(a_user_new_obj, a_user_id) {
+
+
+    //remove the _id field from new user object so mongo doesn't get mad about trying to overwrite _id field 
+    delete(a_user_new_obj._id);
+
+    const results = await collection.findOneAndUpdate(
+        { _id: new ObjectId(a_user_id) }, 
+        { $set: a_user_new_obj },
+        { returnDocument: 'after'}
+    );
+        
+    return { ...results.value, password: undefined };
 }
