@@ -2,9 +2,9 @@
     <form class="section" @submit.prevent="login()">
         <div class="box mx-6 my-6 p-6" id="loginBox">
             <div class="field">
-                <label class="label">Email:</label>
+                <label class="label">User Handle:</label>
                 <div class="control">
-                    <input class="input" type="text" placeholder="example@ex.com" v-model="handle">
+                    <input class="input" type="text" placeholder="@example" v-model="handle">
                 </div>
             </div>
 
