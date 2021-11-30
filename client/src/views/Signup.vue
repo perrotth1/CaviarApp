@@ -77,7 +77,8 @@ export default {
                 isAdmin: false,
                 email: this.email,
                 followers: [],
-                following: []
+                following: [],
+                likedPosts: []
             });
             router.push('/login');
         }

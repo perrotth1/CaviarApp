@@ -66,8 +66,6 @@ module.exports.AddUser = async function AddUser(a_user) {
 
     a_user.id = results.insertedId;
 
-    a_user.followers = [];
-    a_user.following = [];
 
     return { a_user }
 
