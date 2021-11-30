@@ -16,7 +16,9 @@
       </div>
     </div>
     <hr />
+
     <div class="card-content">
+
       <div class="columns">
         <div class="column is-2">
           <span class="icon">
@@ -45,8 +47,23 @@
         </div>
       </div>
 
+      <div class="columns">
+        <div class="column is-2">
+          <span class="icon">
+            <i class="fas fa-tshirt"></i>
+          </span>
+        </div>
+        <div class="column is-3">
+          <p>Outfits:</p>
+        </div>
+        <div class="column is-">
+          <p>{{totalOutfits}}</p>
+        </div>
+      </div>
+      
       <hr />
 
+      <!--Follow / Unfollow button -->
       <div v-if="showButton">
         <div class="card-content" v-if="isFollowed">
           <button
@@ -83,6 +100,8 @@
 </template>
 
 <script>
+import { GetWall } from "../services/posts.js";
+
 export default {
   props: {
     user: Object,
@@ -91,6 +110,7 @@ export default {
   },
   data: () => ({
     buttonHover: false,
+    totalOutfits: 0
   }),
   computed: {
     fullName() {
@@ -101,6 +121,10 @@ export default {
     follow() {},
     unfollow() {},
   },
+  async mounted(){
+    const wall = await GetWall(this.user.userHandle);
+    this.totalOutfits = wall.length;
+  }
 };
 </script>
 
