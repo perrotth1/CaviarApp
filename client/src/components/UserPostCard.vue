@@ -3,11 +3,49 @@
     <div class="columns">
       <div class="column is-half">
         <div class="card-content has-background-black" id="outfitArea">
+          <div class="zoombutton">
+            <button class="button" type="button" @click="launchModal()"> 
+              <span class="icon">
+                <i class="fas fa-search-plus fa-lg"></i>
+              </span>
+            </button>
+          </div>
+
+            <div class="modal" :class="{ 'is-active': modalActive }" >
+              <div class="modal-background" ></div>
+              <div class="modal-card has-background-black" style="overflow-y: scroll; height: 100%;">
+                  <div class="card-image" style="margin: auto">
+                    <figure class="image" >
+                      <img :src="post.imgTopSrc" :alt="post.imgTopAlt" />
+                    </figure>
+                  </div>
+
+                  <div class="card-image" style="margin: auto;">
+                    <figure class="image">
+                      <img :src="post.imgPantsSrc" :alt="post.imgPantsAlt" />
+                    </figure>
+                  </div>
+                  <div class="card-image" style="margin: auto;">
+                    <figure class="image">
+                      <img :src="post.imgShoesSrc" :alt="post.imgShoesAlt" />
+                    </figure>
+                  </div>
+                  
+                <button
+                  class="modal-close is-large"
+                  type="button"
+                  aria-label="close"
+                  @click="closeModal()"
+                ></button>
+              </div>
+            </div>
+
           <div class="card-image">
             <figure class="image" id="topImg">
               <img :src="post.imgTopSrc" :alt="post.imgTopAlt" />
             </figure>
           </div>
+
           <div class="card-image" id="pantImg">
             <figure class="image">
               <img :src="post.imgPantsSrc" :alt="post.imgPantsAlt" />
@@ -193,26 +231,41 @@ export default {
       await UnlikePost( Session.user, this.post._id );
       this.likes--;
       this.loadContent();
+    },
+    launchModal() {
+      this.modalActive = true;
+    },
+    closeModal() {
+      this.modalActive = false;
     }
   },
   data: () => ({
     likedByUser: false,
     enableLikeButton: false,
     likeButtonHover: false,
-    likes: null
+    likes: null,
+    modalActive: false
   })
 };
 </script>
 
 <style>
+
+
 .card {
-  margin-bottom: 20px;
-  padding: 15px;
+  margin-bottom: 0px;
+  padding: 0px;
 }
 
 .card-image {
   max-width: 200px;
-  margin: 0 auto;
-  margin-bottom: 15px;
+  margin: auto;
+  margin-bottom: 0px;
 }
+
+.zoombutton {
+  display: inline-block;
+  position: absolute;
+}
+
 </style>
