@@ -7,6 +7,7 @@ import MakePost from '../views/MakePost.vue';
 import Login from '../views/Login.vue';
 import Signup from '../views/Signup.vue';
 import Profile from '../views/Profile.vue';
+import Discover from '../views/Discover.vue';
 
 const routes = [
   {
@@ -41,6 +42,11 @@ const routes = [
     name: 'Profile',
     component: Profile,
     meta: { requiresLogin: true }
+  },
+  {
+    path: '/discover',
+    name: 'Discover',
+    component: Discover
   }
 ]
 

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-spaced" role="navigation" aria-label="main navigation" style="background-color: black;">
+  <nav class="navbar is-spaced has-background-black" role="navigation" aria-label="main navigation" >
     <div class="navbar-brand">
       <router-link class="navbar-item" to="/">
           <img src="../assets/CAVIARlogo.png" height="28"/>
@@ -34,7 +34,7 @@
           </span>
         </router-link>
 
-        <router-link class="navbar-item" to="/" active-class="is-active">
+        <router-link class="navbar-item" to="/discover" active-class="is-active">
           <span class="icon">
             <i class="fas fa-search"></i>
           </span>
