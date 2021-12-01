@@ -125,6 +125,7 @@ export default {
       const wall = await GetWall(this.user.userHandle);
       this.totalOutfits = wall.length;
 
+      //determine whether to show follow button and what state to show it in
       this.showButton = false;
       this.isFollowed = false;
       if( Session.user ) { 

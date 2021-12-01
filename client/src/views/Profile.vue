@@ -70,22 +70,7 @@ export default {
                     this.topPost = this.posts[topIndex];
                 }   
 
-                //determine whether to show follow button and what state to show it in
-
-                //this.showButton = false;
-                //this.isFollowed = false;
-
-                /*
-                if( Session.user ) { 
-                    if( Session.user.userHandle != this.user.userHandle ) {
-                        this.showButton = true;
-                        console.log("Show button: " + this.showButton)
-                    }
-                    if ( Session.user.following.map( f => f.handle ).includes( this.user.userHandle ) ) {
-                        this.isFollowed = true;
-                    }
-                }
-                */
+                
             }
         },
     async mounted() {
