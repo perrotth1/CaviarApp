@@ -101,16 +101,17 @@
 
 <script>
 import { GetWall } from "../services/posts.js";
+import Session from "../services/session.js";
 
 export default {
   props: {
-    user: Object,
-    showButton: Boolean,
-    isFollowed: Boolean,
+    user: Object
   },
   data: () => ({
     buttonHover: false,
-    totalOutfits: 0
+    totalOutfits: 0,
+    showButton: false,
+    isFollowed: false
   }),
   computed: {
     fullName() {
@@ -120,11 +121,31 @@ export default {
   methods: {
     follow() {},
     unfollow() {},
+    async loadContent() {
+      const wall = await GetWall(this.user.userHandle);
+      this.totalOutfits = wall.length;
+
+      this.showButton = false;
+      this.isFollowed = false;
+      if( Session.user ) { 
+            if( Session.user.userHandle != this.user.userHandle ) {
+                this.showButton = true;
+                console.log("Show button: " + this.showButton)
+            }
+            if ( Session.user.following.map( f => f.handle ).includes( this.user.userHandle ) ) {
+                this.isFollowed = true;
+            }
+        }
+    }
   },
   async mounted(){
-    const wall = await GetWall(this.user.userHandle);
-    this.totalOutfits = wall.length;
-  }
+    this.loadContent();
+  },
+  watch: {
+        'user' () {
+            this.loadContent();
+        }
+    }
 };
 </script>
 

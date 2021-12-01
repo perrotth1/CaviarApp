@@ -2,7 +2,7 @@
 <div class="section">
     <div class="columns">
         <div class="column is-half" v-if="user">
-            <user-profile-card :user="user" :showButton="showButton" :isFollowed="isFollowed"/>
+            <user-profile-card :user="user"/>
         </div>
         <div class="column is-half" v-if="posts">
             <user-post-minimal :post="topPost" />
@@ -72,9 +72,10 @@ export default {
 
                 //determine whether to show follow button and what state to show it in
 
-                this.showButton = false;
-                this.isFollowed = false;
+                //this.showButton = false;
+                //this.isFollowed = false;
 
+                /*
                 if( Session.user ) { 
                     if( Session.user.userHandle != this.user.userHandle ) {
                         this.showButton = true;
@@ -84,6 +85,7 @@ export default {
                         this.isFollowed = true;
                     }
                 }
+                */
             }
         },
     async mounted() {
