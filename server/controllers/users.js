@@ -17,14 +17,20 @@ app
                 .catch(next)
     })
 
-    .get("/:user_id", (req, res, next) => {
-        model   .Get(req.params.user_id)
-                .then( user => res.send(user) )
+    .get("/search", (req, res, next) => {
+        model   .Search(req.query.q)
+                .then( users => res.send(users) )
                 .catch(next)
     })
 
     .get("/byhandle/:handle", (req, res, next) => {
         model   .GetByHandle(req.params.handle)
+                .then( user => res.send(user) )
+                .catch(next)
+    })
+
+    .get("/:user_id", (req, res, next) => {
+        model   .Get(req.params.user_id)
                 .then( user => res.send(user) )
                 .catch(next)
     })
@@ -55,6 +61,18 @@ app
                     console.log("Returned from model");
                     res.send(user);
                 })
+                .catch(next)
+    })
+
+    .post("/follow", (req, res, next) => {
+        model   .Follow(req.body.a_user, req.body.a_target_user)
+                .then(result => res.send(result))
+                .catch(next)
+    })
+
+    .post("/unfollow", (req, res, next) => {
+        model   .Unfollow(req.body.a_user, req.body.a_target_user)
+                .then(result => res.send(result))
                 .catch(next)
     })
 

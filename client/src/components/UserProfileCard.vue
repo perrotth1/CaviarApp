@@ -71,6 +71,7 @@
             :class="{ 'is-danger': buttonHover }"
             @mouseover="buttonHover = true"
             @mouseleave="buttonHover = false"
+            @click="unfollow()"
           >
             <div v-if="!buttonHover">
               <span class="icon is-small">
@@ -87,7 +88,7 @@
           </button>
         </div>
         <div class="card-content" v-else>
-          <button class="button is-success">
+          <button class="button is-success" @click="follow()">
             <span class="icon is-small">
               <i class="fas fa-user-friends"></i>
             </span>
@@ -101,6 +102,10 @@
 
 <script>
 import { GetWall } from "../services/posts.js";
+import { Follow } from "../services/users.js";
+import { Unfollow } from "../services/users.js";
+
+
 import Session from "../services/session.js";
 
 export default {
@@ -119,8 +124,14 @@ export default {
     },
   },
   methods: {
-    follow() {},
-    unfollow() {},
+    async follow() {
+      await Follow(Session.user, this.user);
+      this.isFollowed = true;
+    },
+    async unfollow() {
+      await Unfollow(Session.user, this.user);
+      this.isFollowed = false;
+    },
     async loadContent() {
       const wall = await GetWall(this.user.userHandle);
       this.totalOutfits = wall.length;

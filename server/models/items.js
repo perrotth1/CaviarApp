@@ -49,7 +49,6 @@ module.exports.Search = async function Search(a_type, a_term) {
     }  
 
     const terms = a_term.split(' ');
-    console.log(terms)
 
     let results = await targetColl.find( { A: new RegExp(terms[0], "i") } ).toArray();
     terms.splice(0, 1);
@@ -57,8 +56,6 @@ module.exports.Search = async function Search(a_type, a_term) {
     for(const t of terms) {
         results = results.filter(r => r.A.match( new RegExp(t, "i") ) );
     }
-
-    console.log(results);
 
     if(results.length > 500){
         results.splice(500);
